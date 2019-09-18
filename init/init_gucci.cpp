@@ -42,8 +42,6 @@
 #include "vendor_init.h"
 #include "property_service.h"
 
-#include "init_msm8916.h"
-
 using android::init::property_set;
 
 int is2GB()
@@ -61,4 +59,11 @@ void init_target_properties()
     property_set("dalvik.vm.heaptargetutilization", "0.75");
     property_set("dalvik.vm.heapminfree", "512k");
     property_set("dalvik.vm.heapmaxfree", "8m");
+}
+
+void vendor_load_properties()
+{
+    // Init a dummy BT MAC address, will be overwritten later
+    property_set("ro.boot.btmacaddr", "00:00:00:00:00:00");
+    init_target_properties();
 }
